@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twin Garden — Spot the Difference</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">&#9673;</span>
+      <h1>Twin Garden</h1>
+      <span class="brand-sub">spot the difference</span>
+    </div>
+    <div id="hud" aria-live="polite">
+      <div class="hud-item" id="hud-level" title="Current level">Level 1 / 3</div>
+      <div class="hud-item" id="hud-scene" title="Scene name">Morning Garden</div>
+      <div class="hud-item hud-found" id="hud-found" title="Differences found">Found 0 / 7 &middot; 7 left</div>
+      <div class="hud-item hud-timer" id="hud-timer" title="Time left">3:00</div>
+      <div class="hud-item" id="hud-score" title="Score">Score 0</div>
+      <div class="hud-item" id="hud-hints" title="Hints left">Hints 3</div>
+      <div class="hud-buttons">
+        <button id="btn-hint" type="button" title="Hint (H): circle one difference you have not found yet">Hint (H)</button>
+        <button id="btn-sound" type="button" title="Sound on/off (M)">Sound: on</button>
+        <button id="btn-restart" type="button" title="Restart this level (R)">Restart</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="stage">
+    <div class="panel" id="panel-left">
+      <div class="panel-tag">LEFT &mdash; the original</div>
+      <canvas id="canvas-left" width="600" height="440" tabindex="0" aria-label="Left picture. Click a difference or use arrow keys and Enter."></canvas>
+    </div>
+    <div class="panel" id="panel-right">
+      <div class="panel-tag">RIGHT &mdash; find what changed</div>
+      <canvas id="canvas-right" width="600" height="440" tabindex="0" aria-label="Right picture. Click a difference or use arrow keys and Enter."></canvas>
+    </div>
+    <div id="toast" role="status"></div>
+  </main>
+
+  <footer id="helpbar">
+    <span><strong>Mouse:</strong> click a difference on either picture.</span>
+    <span><strong>Keyboard:</strong> arrow keys move the crosshair, <kbd>Enter</kbd> checks that spot.</span>
+    <span><kbd>H</kbd> hint &middot; <kbd>M</kbd> sound &middot; <kbd>R</kbd> restart level &middot; <kbd>Esc</kbd> menu</span>
+    <span id="best-line">Best score: 0</span>
+  </footer>
+
+  <div class="overlay" id="overlay-title">
+    <div class="card">
+      <h2>Twin Garden</h2>
+      <p class="tagline">Two pictures. Seven secrets. One sharp eye.</p>
+      <p>Two near-identical pictures sit side by side. Seven things changed between
+      them &mdash; a colour, a missing friend, a light switched off. Find them all
+      before the clock runs out. Three scenes grow harder as you go: a sunny
+      garden, a harbour at dusk, and a campfire night in the forest.</p>
+      <div class="level-pick" id="level-pick"></div>
+      <button class="big-btn" id="btn-play" type="button">Play from Level 1</button>
+      <p class="fine">Click a difference, or move the crosshair with the arrow keys and press Enter.
+      Wrong clicks cost 25 points. Hints are free but you only get three per level.</p>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="overlay-level">
+    <div class="card">
+      <h2 id="level-done-title">Scene complete!</h2>
+      <p id="level-done-text"></p>
+      <button class="big-btn" id="btn-next" type="button">Next scene</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="overlay-win">
+    <div class="card">
+      <h2>You found them all!</h2>
+      <p id="win-text"></p>
+      <p class="tagline" id="win-rank"></p>
+      <button class="big-btn" id="btn-again" type="button">Play again</button>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="overlay-time">
+    <div class="card">
+      <h2>Time&rsquo;s up!</h2>
+      <p id="time-text"></p>
+      <button class="big-btn" id="btn-retry" type="button">Try this scene again</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
